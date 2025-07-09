@@ -1,0 +1,25 @@
+Please act as a professional Verilog designer.
+
+Implement a module of a 16-bit subtractor with overflow checking for medium-range signed arithmetic operations.
+
+Module name:  
+    sub_16bit_signed               
+
+Input ports:
+    A [15:0]: First 16-bit input operand (representing a signed integer in two's complement format).
+    B [15:0]: Second 16-bit input operand (representing a signed integer to be subtracted from A, in two's complement format).
+
+Output ports:
+    result [15:0]: 16-bit output representing the signed difference of the two operands (A - B).
+    overflow: 1-bit output indicating whether an overflow occurred during the subtraction operation.
+
+Implementation:
+Subtraction: The module performs signed binary subtraction of A and B using two's complement arithmetic.
+
+Overflow Detection: The module checks for signed overflow conditions by analyzing the sign bits of A, B, and the result.
+- Positive overflow occurs when a positive number (A) is subtracted by a negative number (B) and the result is negative.
+- Negative overflow occurs when a negative number (A) is subtracted by a positive number (B) and the result is positive.
+
+The overflow flag is set to 1 if a signed overflow condition is detected; otherwise, it is set to 0.
+
+Give me the complete code.

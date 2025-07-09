@@ -1,0 +1,29 @@
+Please act as a professional Verilog designer.
+
+A 32-register file module with two asynchronous read ports and one synchronous write port. This register file is suitable for CPU datapaths such as RISC-V and MIPS. It supports simultaneous reading from two registers and writing to a third register on the rising edge of the clock. Register 0 is hardwired to zero and cannot be modified.
+
+Module name:  
+    regfile
+
+Input ports:
+    clk: Clock signal used for synchronous write operations.
+    we: Write enable signal. When high, writes data to the register at the given write address on the rising clock edge.
+    waddr [4:0]: 5-bit write address specifying which register to write to.
+    wdata [31:0]: 32-bit data input to be written into the register file.
+    raddr1 [4:0]: 5-bit address for the first read port.
+    raddr2 [4:0]: 5-bit address for the second read port.
+
+Output ports:
+    rdata1 [31:0]: 32-bit output corresponding to the contents of the register specified by raddr1.
+    rdata2 [31:0]: 32-bit output corresponding to the contents of the register specified by raddr2.
+
+Register Array:
+    reg [31:0] regs [0:31]: Defines 32 general-purpose registers, each 32 bits wide.
+
+Write Behavior:
+    On the rising edge of clk, if we is high and waddr is not 0, the value of wdata is written into regs[waddr].
+
+Read Behavior:
+    rdata1 and rdata2 are assigned continuously from the register file based on raddr1 and raddr2. If either read address is 0, the output will be 0 regardless of the contents of regs[0].
+
+Give me the complete code.

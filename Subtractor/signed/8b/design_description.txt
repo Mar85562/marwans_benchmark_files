@@ -1,0 +1,25 @@
+Please act as a professional Verilog designer.
+
+Implement a module of an 8-bit signed subtractor with overflow detection for small-scale arithmetic computations.
+
+Module name:
+    sub_8bit_signed
+
+Input Ports:
+    A [7:0]: First 8-bit input operand (signed, two's complement format).
+    B [7:0]: Second 8-bit input operand (signed, two's complement format to be subtracted from A).
+
+Output Ports:
+    result [7:0]: 8-bit signed output representing the difference of the two operands (A - B).
+    overflow: 1-bit output indicating whether an overflow occurred during the subtraction.
+
+Implementation:
+Subtraction: The module performs signed binary subtraction of A and B using two's complement arithmetic.
+
+Overflow Detection: The module checks for signed overflow by analyzing the sign bits of A, B, and the result.
+- Positive overflow occurs when a positive A is subtracted by a negative B and the result is negative.
+- Negative overflow occurs when a negative A is subtracted by a positive B and the result is positive.
+
+The overflow flag is set to 1 if a signed overflow condition is detected; otherwise it is set to 0.
+
+Give me the complete code.

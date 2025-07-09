@@ -1,0 +1,16 @@
+# yosys_script.ys
+
+# Step 1: Read the Verilog design
+read_verilog regfile.v
+
+# Step 2: Check design structure
+hierarchy -check -top regfile
+
+# Step 3: Run synthesis passes
+proc; opt; fsm; opt; memory; opt
+
+# Step 4: Technology mapping (optional but helpful)
+techmap; opt
+
+# Step 5: Output synthesized netlist
+write_verilog output/synth_regfile.v
