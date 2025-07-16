@@ -18,6 +18,8 @@ module testbench;
         .overflow(overflow)
     );
 
+    integer f; // Declare file handle outside procedural block
+
     initial begin
         $display("Starting testbench for 8-bit signed subtraction...");
         error = 0;
@@ -45,17 +47,24 @@ module testbench;
                 if (result !== (A - B) || overflow !== expected_ovf) begin
                     error = error + 1;
                     $display("FAIL: A=%d, B=%d | Expected=%d, Got=%d | Overflow Expected=%b, Got=%b",
-                             A, B, A - B, result, expected_ovf, overflow);
+                            A, B, A - B, result, expected_ovf, overflow);
                 end
             end
         end
 
-        if (error == 0)
+        // Write PASS/FAIL to file
+        f = $fopen("test_result.txt", "w");
+        if (error == 0) begin
             $display("All 8-bit tests passed successfully!");
-        else
+            $fdisplay(f, "PASS");
+        end else begin
             $display("%d tests failed in 8-bit testbench.", error);
+            $fdisplay(f, "FAIL");
+        end
+        $fclose(f);
 
         $finish;
     end
+
 
 endmodule

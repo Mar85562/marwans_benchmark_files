@@ -74,6 +74,7 @@ module regfile_tb;
         end
     endtask
 
+    integer f;
     // Test procedure
     initial begin
         $display("Starting Register File Testbench...");
@@ -104,11 +105,16 @@ module regfile_tb;
         check(10*10, 20*10);
 
         // --- Summary ---
-        if (errors == 0)
-            $display("All tests PASSED.");
-        else
-            $display("%0d test(s) FAILED.", errors);
+        f = $fopen("test_result.txt", "w");
 
+        if (errors == 0) begin
+            $display("All tests PASSED.");
+            $fdisplay(f, "PASS");
+        end else begin
+            $display("%0d test(s) FAILED.", errors);
+            $fdisplay(f, "FAIL");
+        end
+        $fclose(f);
         $finish;
     end
 

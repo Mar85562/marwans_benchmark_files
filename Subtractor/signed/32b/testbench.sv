@@ -18,6 +18,8 @@ module testbench;
         .overflow(overflow)
     );
 
+    integer f; // Declare file handle outside procedural block
+
     initial begin
         $display("Starting testbench for 32-bit signed subtraction...");
         error = 0;
@@ -49,10 +51,15 @@ module testbench;
             end
         end
 
-        if (error == 0)
+        f = $fopen("test_result.txt", "w");
+        if (error == 0) begin
             $display("All 32-bit tests passed successfully!");
-        else
+            $fdisplay(f, "PASS");
+        end else begin
             $display("%0d tests failed in 32-bit testbench.", error);
+            $fdisplay(f, "FAIL");
+        end
+        $fclose(f);
 
         $finish;
     end

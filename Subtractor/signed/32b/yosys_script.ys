@@ -1,17 +1,4 @@
-# yosys_script.ys
-
-# Step 1: Read the Verilog design
-read_verilog sub_32bit_signed.v
-
-# Step 2: Check design structure
-hierarchy -check -top sub_32bit_signed
-
-# Step 3: Run synthesis passes
-proc; opt; fsm; opt; memory; opt
-
-# Step 4: Technology mapping (optional but helpful)
-techmap; opt
-
-# Step 5: Output synthesized netlist
-write_verilog output/synth_sub_32bit_signed.v
-
+read_verilog sub_32bit_signed.v 
+proc; opt; fsm; memory; opt; techmap; opt
+synth -top sub_32bit_signed
+write_verilog synthesized.v
