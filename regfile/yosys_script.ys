@@ -1,4 +1,0 @@
-read_verilog regfile.v 
-proc; opt; fsm; memory; opt; techmap; opt
-synth -top regfile
-write_verilog synthesized.v
