@@ -1,4 +1,0 @@
-read_verilog sub_16bit_signed.v 
-proc; opt; fsm; memory; opt; techmap; opt
-synth -top sub_16bit_signed
-write_verilog synthesized.v
