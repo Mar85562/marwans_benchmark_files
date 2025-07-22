@@ -20,8 +20,8 @@ module uart_tx #(
     parameter STOP    = 2'b11;
 
     reg [1:0] state;
-    integer baud_cnt;
-    integer bit_cnt;
+    reg [$clog2(BAUD_TICKS):0] baud_cnt;
+    reg [$clog2(PAYLOAD_BITS):0] bit_cnt;
     reg [PAYLOAD_BITS-1:0] shift_reg;
 
     always @(posedge clk or negedge resetn) begin
@@ -36,46 +36,59 @@ module uart_tx #(
                 IDLE: begin
                     uart_txd <= 1'b1;
                     uart_tx_busy <= 0;
+                    shift_reg <= 0;
                     if (uart_tx_en) begin
-                        state <= START;
                         shift_reg <= uart_tx_data;
                         baud_cnt <= BAUD_TICKS - 1;
+                        bit_cnt <= 0;
                         uart_tx_busy <= 1;
+                        state <= START;
                     end
                 end
 
                 START: begin
-                    uart_txd <= 0;  // Start bit
+                    uart_txd <= 1'b0;  // Start bit is low
                     if (baud_cnt == 0) begin
-                        state <= SEND;
-                        bit_cnt <= 0;
                         baud_cnt <= BAUD_TICKS - 1;
+                        state <= SEND;
                     end else begin
                         baud_cnt <= baud_cnt - 1;
                     end
                 end
 
                 SEND: begin
-                    uart_txd <= shift_reg[bit_cnt];
+                    uart_txd <= shift_reg[0];  // Send LSB first
+
+                if (baud_cnt == 0) begin
+                    shift_reg <= {1'b0, shift_reg[PAYLOAD_BITS-1:1]};  // Shift right
+                    bit_cnt <= bit_cnt + 1;
+
+                    if (bit_cnt == PAYLOAD_BITS - 1) begin
+                        state <= STOP;
+                        bit_cnt <= 0;
+                    end
+
+                    baud_cnt <= BAUD_TICKS - 1;
+                end else begin
+                    baud_cnt <= baud_cnt - 1;
+                end
+                end
+
+                STOP: begin
+                    uart_txd <= 1'b1;  // Stop bit
                     if (baud_cnt == 0) begin
-                        bit_cnt <= bit_cnt + 1;
-                        if (bit_cnt == PAYLOAD_BITS - 1) begin
-                            state <= STOP;
+                        if (bit_cnt == STOP_BITS - 1) begin
+                            uart_tx_busy <= 0;
+                            state <= IDLE;
+                        end else begin
+                            bit_cnt <= bit_cnt + 1;
+                            baud_cnt <= BAUD_TICKS - 1;
                         end
-                        baud_cnt <= BAUD_TICKS - 1;
                     end else begin
                         baud_cnt <= baud_cnt - 1;
                     end
                 end
 
-                STOP: begin
-                    uart_txd <= 1;  // Stop bit
-                    if (baud_cnt == 0) begin
-                        state <= IDLE;
-                    end else begin
-                        baud_cnt <= baud_cnt - 1;
-                    end
-                end
             endcase
         end
     end

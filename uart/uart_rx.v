@@ -22,8 +22,8 @@ module uart_rx #(
     parameter STOP    = 2'b11;
 
     reg [1:0] state;
-    integer baud_cnt;
-    integer bit_cnt;
+    reg [$clog2(BAUD_TICKS):0] baud_cnt;
+    reg [$clog2(PAYLOAD_BITS):0] bit_cnt;
     reg [PAYLOAD_BITS-1:0] data_shift;
 
     always @(posedge clk or negedge resetn) begin
