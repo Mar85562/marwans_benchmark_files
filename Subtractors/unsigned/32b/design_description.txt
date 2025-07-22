@@ -1,0 +1,26 @@
+Please act as a professional Verilog designer.
+
+Implement a module of a 32-bit unsigned subtractor with borrow-out detection for high-precision arithmetic operations in digital systems and embedded applications.
+
+Module name:  
+    sub_32bit_unsigned
+
+Input Ports:  
+    A [31:0]: First 32-bit input operand (unsigned). Represents the minuend.  
+    B [31:0]: Second 32-bit input operand (unsigned). Represents the subtrahend to be subtracted from A.
+
+Output Ports:  
+    result [31:0]: 32-bit output representing the result of the subtraction (A - B).  
+    borrow: 1-bit output flag that indicates whether a borrow occurred during the subtraction.
+
+Implementation:  
+Subtraction Logic:  
+    The module performs unsigned subtraction: A - B.  
+    In unsigned binary arithmetic, if A < B, the result wraps around due to underflow, and a borrow occurs.
+
+Borrow Detection:  
+    Borrow-out is detected by comparing operands A and B:  
+    - If A < B, the subtraction would cause an underflow, so borrow = 1.  
+    - If A >= B, the subtraction completes without borrow, so borrow = 0.
+
+This design is intended to be synthesizable and suitable for integration into high-performance or embedded systems requiring precise unsigned arithmetic with borrow detection.

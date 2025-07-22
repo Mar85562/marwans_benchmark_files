@@ -1,0 +1,26 @@
+Please act as a professional Verilog designer.
+
+Implement a module of a 16-bit unsigned subtractor with borrow-out detection for digital arithmetic and embedded system applications.
+
+Module name:  
+    sub_16bit_unsigned
+
+Input Ports:  
+    A [15:0]: First 16-bit input operand (unsigned). Represents the minuend.  
+    B [15:0]: Second 16-bit input operand (unsigned). Represents the subtrahend to be subtracted from A.
+
+Output Ports:  
+    result [15:0]: 16-bit output representing the result of the subtraction (A - B).  
+    borrow: 1-bit output flag that indicates whether a borrow occurred during the subtraction.
+
+Implementation:  
+Subtraction Logic:  
+    The module performs unsigned subtraction: A - B.  
+    In unsigned binary arithmetic, if A < B, the result wraps around due to underflow, and a borrow occurs.
+
+Borrow Detection:  
+    Borrow-out is detected by comparing operands A and B:  
+    - If A < B, the subtraction would cause an underflow, so borrow = 1.  
+    - If A >= B, the subtraction completes without borrow, so borrow = 0.
+
+This module is intended to be synthesizable and suitable for integration into systems requiring accurate unsigned arithmetic with explicit borrow detection.
