@@ -133,23 +133,23 @@ module uart_top_tb;
 
                 // Only proceed with data sampling if start bit was valid
                 if (reception_successful) begin
-                    // Wait for the remaining half of the start bit period
-                    #(HALF_BIT_PERIOD_NS);
+                    // From mid-start (0.5 bit) -> to mid-bit0 (1.5 bits total)
+                    #(BIT_PERIOD_NS);
 
-                    // Sample data bits (LSB first)
+                    // Sample data bits (LSB first) at each bit center
                     for (i = 0; i < PAYLOAD_BITS; i = i + 1) begin
-                        #(BIT_PERIOD_NS);
-                        received_data[i] = uart_txd;
+                        received_data[i] = uart_txd;   // sample at center
+                        #(BIT_PERIOD_NS);              // advance to next bit center
                     end
 
-                    // Wait for stop bit(s) and verify they are high
+                    // Check stop bit(s) at their centers (we are already centered on first stop bit)
                     for (i = 0; i < STOP_BITS; i = i + 1) begin
-                        #(BIT_PERIOD_NS);
                         if (uart_txd !== 1'b1) begin
                             $display("ERROR: uart_txd not high at stop bit sample point for expected 0x%h.", expected_data);
                             errors = errors + 1;
-                            reception_successful = 1'b0; // Mark as failed
+                            reception_successful = 1'b0;
                         end
+                        #(BIT_PERIOD_NS);
                     end
                 end
             end
