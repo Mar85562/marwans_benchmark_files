@@ -1,0 +1,23 @@
+Please act as a professional Verilog designer.
+
+Implement a combinational logic module that performs the function of a 8-to-3 encoder. The encoder accepts 8 input lines, 
+where only one input is asserted high (1) at a time, and outputs a 3-bit binary code that corresponds to the index of the high input.
+
+Module name:
+  encoder_8x3
+
+Input ports:
+  in[7:0]: 8-bit input vector, where only one bit is high at a time.
+
+Output ports:
+  out[2:0]: 3-bit binary output indicating the index of the asserted input line.
+
+Implementation:
+This encoder maps each single high bit in in[7:0] to its corresponding binary-encoded index in out[2:0]. 
+Each bit position corresponds to a 3-bit output that converts the bit position to a 3-bit representation of that position. 
+For example : If in = 8'b00000010 , in this case the 1st bit is high, thus the output should represent the number 1 in 3-bits. 
+In any case where more than one bit is at a high, or all are low, this would result in an invalid output.
+
+The output reflects the position of the single high bit. For any invalid input, the encoder will output: 3'bxxx.
+
+Please give me the complete code.

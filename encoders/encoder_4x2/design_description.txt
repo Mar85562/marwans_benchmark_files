@@ -1,0 +1,23 @@
+Please act as a professional Verilog designer.
+
+Implement a combinational logic module that performs the function of a 4-to-2 encoder. The encoder accepts 4 input lines, 
+where only one input is asserted high (1) at a time, and outputs a 2-bit binary code that corresponds to the index of the high input.
+
+Module name:
+  encoder_4x2
+
+Input ports:
+  in[3:0]: 4-bit input vector, where only one bit is high at a time.
+
+Output ports:
+  out[1:0]: 2-bit binary output indicating the index of the asserted input line.
+
+Implementation:
+This encoder maps each single high bit in in[3:0] to its corresponding binary-encoded index in out[1:0]. 
+Each bit position corresponds to a 3-bit output that converts the bit position to a 3-bit representation of that position. 
+For example : If in = 4'b0010 , in this case the 1st bit is high, thus the output should represent the number 1 in 2-bits. 
+In any case where more than one bit is at a high, or all are low, this would result in an invalid output.
+
+The output reflects the position of the single high bit. For any invalid input, the encoder will output: 2'bxx.
+
+Please give me the complete code.

@@ -1,0 +1,29 @@
+Please act as a professional Verilog designer.
+
+Implement a module that detects a specified 4-bit binary pattern from a serial input stream and counts the number of times the pattern appears, including overlapping occurrences.
+
+Module name:
+pattern_counter
+
+Input ports:
+- clk: Clock signal used to drive the sequential logic.
+- rst: Synchronous reset signal. When high, clears the internal shift register and count.
+- bit_in: Serial 1-bit input stream.
+- pattern [3:0]: 4-bit binary pattern to be matched.
+- enable: Enables pattern detection and counting when high.
+
+Output ports:
+- match_count [15:0]: 16-bit count of total matches detected.
+- pattern_match: High for one clock cycle when a pattern match is detected.
+- ready: High when the module is actively processing input (i.e., after reset and when enable is high).
+
+Internal logic:
+1. Shift Register Window: The module maintains a 4-bit shift register that updates on each rising edge of the clock when enable is asserted. Each new bit from bit_in shifts into the register, forming a sliding window of the latest 4 bits.
+
+2. Pattern Detection: The contents of the shift register are continuously compared against the pattern input. If a match is detected, the pattern_match output is asserted for one clock cycle and match_count is incremented by 1.
+
+3. Overlap Support: The circuit allows overlapping pattern matches. For example, the pattern 1010 in the stream 1101010101 would be matched at multiple overlapping positions.
+
+4. Reset Behavior: When rst is high, the shift register and match counter are reset. After reset, and when enable is high, the module resumes pattern monitoring.
+
+Generate correct synthesizable RTL Verilog code

@@ -1,0 +1,24 @@
+Please act as a professional Verilog designer.
+
+An 8-bit register designed for storing and updating an 8-bit binary value based on synchronous clocking and reset behavior.
+This register is a key component in digital systems that handle byte-wide data storage, commonly found in datapaths, memory buffers, and processing pipelines.
+
+Module name:
+  register_8bit
+
+Input ports:
+  clk: Clock signal used to synchronize data storage.
+  rst: Active-high reset signal that forces the register to a known state (8'b00000000).
+  d: 8-bit data input signal representing the value to be stored.
+
+Output ports:
+  q: 8-bit output signal representing the current stored value in the register.
+
+Implementation:
+The 8-bit register operates on the principle of edge-triggered data storage. On every rising edge of the clock (clk),
+the register captures the 8-bit value present on the input d and updates the output q accordingly.
+If the reset (rst) signal is asserted (logic high), the register is immediately cleared to 8'b00000000 on the next rising edge of the clock.
+
+This design ensures stable and predictable storage of 8-bit values in synchronous digital systems and is commonly used in microprocessors, ALUs, control logic, and finite state machines.
+
+Give me the complete code.

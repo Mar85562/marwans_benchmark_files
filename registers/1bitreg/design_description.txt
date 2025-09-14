@@ -1,0 +1,24 @@
+Please act as a professional Verilog designer.
+
+A simple 1-bit register designed for storing and updating a single-bit binary value based on synchronous clocking and reset behavior. 
+This register is fundamental in digital logic circuits and serves as a basic building block in larger sequential systems.
+
+Module name:
+  register_1bit
+
+Input ports:
+  clk: Clock signal used to synchronize data storage.
+  rst: Active-high reset signal that forces the register to a known state (logic 0).
+  d: Data input signal representing the value to be stored.
+
+Output ports:
+  q: Output signal representing the current stored value in the register.
+
+Implementation:
+The 1-bit register operates on the principle of edge-triggered data storage. On every rising edge of the clock (clk), 
+the register captures the value present on the input d and updates the output q accordingly. If the reset (rst) signal 
+is asserted (logic high), the register is immediately cleared to 0 on the next rising edge of the clock.
+
+This design ensures predictable behavior in synchronous digital systems and is commonly used for control signals, finite state machines, and data pipelines.
+
+Give me the complete code.

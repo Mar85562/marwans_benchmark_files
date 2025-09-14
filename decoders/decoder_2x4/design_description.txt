@@ -1,0 +1,21 @@
+Please act as a professional Verilog designer.
+
+Implement a combinational logic module that performs the function of a 2-to-4 decoder. 
+The decoder accepts a 2-bit binary input and outputs 4 lines, where exactly one output line is asserted high (1) corresponding to the binary input value.
+
+Module name:
+    decoder_2x4
+
+Input ports:
+    in[1:0]: 2-bit input vector representing the binary value.
+
+Output ports:
+    out[3:0]: 4-bit output vector where only one bit is high at a time, indicating the decoded output line.
+
+Implementation:
+This decoder maps the 2-bit binary input in[1:0] to one-hot encoded output out[3:0]. The value of the 2-bit input
+corresponds to the index where the output signal will have that high bit.
+
+The output reflects the binary input by activating exactly one output line. For any invalid input, the decoder will output: 4'bxxxx.
+
+Please give me the complete code.

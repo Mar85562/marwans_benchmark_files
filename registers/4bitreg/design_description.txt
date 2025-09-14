@@ -1,0 +1,24 @@
+Please act as a professional Verilog designer.
+
+A 4-bit register designed for storing and updating a 4-bit binary value based on synchronous clocking and reset behavior.
+This register is essential in digital systems where multi-bit data storage and sequential logic are required, such as in datapaths, control logic, or small memory buffers.
+
+Module name:
+  register_4bit
+
+Input ports:
+  clk: Clock signal used to synchronize data storage.
+  rst: Active-high reset signal that forces the register to a known state (4'b0000).
+  d: 4-bit data input signal representing the value to be stored.
+
+Output ports:
+  q: 4-bit output signal representing the current stored value in the register.
+
+Implementation:
+The 4-bit register operates on the principle of edge-triggered data storage. On every rising edge of the clock (clk),
+the register captures the 4-bit value present on the input d and updates the output q accordingly.
+If the reset (rst) signal is asserted (logic high), the register is immediately cleared to 4'b0000 on the next rising edge of the clock.
+
+This design ensures reliable and predictable multi-bit data handling in synchronous digital systems and is commonly used for register files, counters, and state storage in finite state machines.                                                                      
+
+Give me the complete code.
