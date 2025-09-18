@@ -1,16 +1,13 @@
 module register_8bit (
-    input  wire       clk,  // Clock input
-    input  wire       rst,  // Active-high synchronous reset
-    input  wire [7:0] d,    // 8-bit data input
-    output reg  [7:0] q     // 8-bit data output
+    input  wire       clk,
+    input  wire       rst,
+    input  wire [7:0] d,
+    output reg  [7:0] q
 );
-
-    // Sequential logic: synchronous reset and data capture
     always @(posedge clk) begin
         if (rst)
-            q <= 8'b00000000;  // Clear on reset
+            q <= 8'b00000000;
         else
-            q <= d;            // Capture input
+            q <= d;
     end
-
 endmodule

@@ -1,24 +1,23 @@
 Please act as a professional Verilog designer.
 
-A simple 1-bit register designed for storing and updating a single-bit binary value based on synchronous clocking and reset behavior. 
-This register is fundamental in digital logic circuits and serves as a basic building block in larger sequential systems.
+Implement a simple 1-bit register that stores and updates a single-bit value using a synchronous active-high reset and a rising-edge clock. This primitive is commonly used in control paths, FSM state bits, and pipeline staging.
 
 Module name:
-  register_1bit
+register_1bit
 
 Input ports:
-  clk: Clock signal used to synchronize data storage.
-  rst: Active-high reset signal that forces the register to a known state (logic 0).
-  d: Data input signal representing the value to be stored.
+- clk: Clock signal used to synchronize data storage (rising-edge triggered).
+- rst: Synchronous active-high reset; forces the register to a known state (0) on the next rising edge of clk.
+- d: Data input bit to be captured.
 
 Output ports:
-  q: Output signal representing the current stored value in the register.
+- q: Output bit representing the current stored value.
 
-Implementation:
-The 1-bit register operates on the principle of edge-triggered data storage. On every rising edge of the clock (clk), 
-the register captures the value present on the input d and updates the output q accordingly. If the reset (rst) signal 
-is asserted (logic high), the register is immediately cleared to 0 on the next rising edge of the clock.
+Internal logic:
+1. Edge-Triggered Storage: On each rising edge of clk, if rst is 1, q is loaded with 1'b0; otherwise, q is loaded with d.
+2. Pure Sequential Behavior: No combinational paths from d to q outside the clocked process; no latches or asynchronous resets.
 
-This design ensures predictable behavior in synchronous digital systems and is commonly used for control signals, finite state machines, and data pipelines.
+Reset Behavior:
+Synchronous active-high reset. At power-up, q is undefined; system logic must assert rst to initialize q to 0.
 
-Give me the complete code.
+Generate correct synthesizable RTL Verilog code

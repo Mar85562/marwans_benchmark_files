@@ -1,22 +1,20 @@
-Please act as a professional Verilog designer.
+ Please act as a professional Verilog designer.
 
-Implement a module of an 16-bit multiplier based on shifting and adding operations.
+Implement a module that multiplies two 16-bit unsigned inputs and produces a 32-bit unsigned product using a shift-and-add (partial-product) method. The design is purely combinational.
 
-Module name:  
-    multi_16bit               
+Module name:
+multi_16bit
+
 Input ports:
-    A [15:0]: First 16-bit input operand (representing a multiplicand).
-    B [15:0]: Second 16-bit input operand (representing a multiplier).
+- a [15:0]: 16-bit unsigned multiplicand.
+- b [15:0]: 16-bit unsigned multiplier.
+
 Output ports:
-    product [31:0]: 32-bit output representing the product of the two 16-bit inputs (A * B).
+- product [31:0]: 32-bit unsigned product a × b.
 
-Implementation:
-Multiplication: The module performs multiplication of A and B using the shift-and-add method.
-- The algorithm iterates through each bit of the multiplier (B). For each bit that is set (1), the multiplicand (A) is added to the product at the corresponding shifted position.
-- The process continues until all bits of the multiplier have been processed.
+Internal logic:
+1. Partial products: For each bit i in b (i = 0..15), form a partial product pp_i = (b[i] ? (a << i) : 32'b0).
+2. Summation: Sum all partial products pp_0..pp_15 combinationally to produce product.
+3. Combinational behavior: No clock or reset; output updates immediately with changes on a or b. The 32-bit width holds the full unsigned product (no overflow or saturation handling needed).
 
-Shifting: After each addition, the multiplicand is logically shifted left by one bit to prepare for the next addition, simulating the traditional multiplication process.
-
-The final product is stored in the output port, which is 32 bits wide to accommodate the maximum possible product of two 16-bit numbers.
-
-Give me the complete code.
+Generate correct synthesizable RTL Verilog code

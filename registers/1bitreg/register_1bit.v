@@ -1,16 +1,13 @@
 module register_1bit (
-    input  wire clk,  // Clock signal
-    input  wire rst,  // Active-high synchronous reset
-    input  wire d,    // Data input
-    output reg  q     // Stored output
+    input  wire clk,
+    input  wire rst,
+    input  wire d,
+    output reg  q
 );
-
-    // Sequential logic: triggered on rising edge of clk
     always @(posedge clk) begin
         if (rst)
-            q <= 1'b0;   // Reset output to 0 when rst is high
+            q <= 1'b0;
         else
-            q <= d;      // Otherwise, capture input d
+            q <= d;
     end
-
 endmodule

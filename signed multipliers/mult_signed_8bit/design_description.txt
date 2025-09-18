@@ -1,21 +1,21 @@
 Please act as a professional Verilog designer.
 
-Implement a module of a 8-bit signed multiplier using 2’s complement arithmetic in combinational logic.
+Implement a module that multiplies two 8-bit signed (two’s-complement) inputs and produces a 16-bit signed (two’s-complement) product. The design is purely combinational.
 
 Module name:
-  mult_signed_8bit
+mult_signed_8bit
 
 Input ports:
-  a[7:0]: 8-bit signed input operand A.
-  b[7:0]: 8-bit signed input operand B.
+- a [7:0]: 8-bit signed operand A (two’s-complement).
+- b [7:0]: 8-bit signed operand B (two’s-complement).
 
 Output ports:
-  product[15:0]: 16-bit signed output representing the product of A and B.
+- product [15:0]: 16-bit signed product of A and B (two’s-complement).
 
-Implementation:
-The module computes the absolute values of a and b by checking the sign bit and negating if negative.
-It then generates 8 partial products by ANDing each bit of the absolute value of b with the entire absolute value of a and shifting it left by the bit index.
-The partial products are summed combinationally to get the unsigned product.
-Finally, the product's sign is adjusted by negating the unsigned sum if the signs of a and b differ.
+Internal logic:
+1. Signed interpretation: Treat a and b as signed two’s-complement values.
+2. Multiplication: Compute product as the signed multiplication of a and b in combinational logic.
+3. Width/precision: The 16-bit output width is sufficient to represent the exact product of any two 8-bit signed inputs; no saturation or rounding is performed.
+4. Combinational behavior: No clock or reset; the output updates immediately with changes on a or b.
 
-Give me the complete code.
+Generate correct synthesizable RTL Verilog code

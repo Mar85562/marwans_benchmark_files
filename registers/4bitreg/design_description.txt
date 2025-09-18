@@ -1,24 +1,23 @@
 Please act as a professional Verilog designer.
 
-A 4-bit register designed for storing and updating a 4-bit binary value based on synchronous clocking and reset behavior.
-This register is essential in digital systems where multi-bit data storage and sequential logic are required, such as in datapaths, control logic, or small memory buffers.
+Implement a 4-bit register that stores and updates a 4-bit value using a rising-edge clock and a synchronous active-high reset.
 
 Module name:
-  register_4bit
+register_4bit
 
 Input ports:
-  clk: Clock signal used to synchronize data storage.
-  rst: Active-high reset signal that forces the register to a known state (4'b0000).
-  d: 4-bit data input signal representing the value to be stored.
+- clk: Clock signal used to synchronize data storage (rising-edge triggered).
+- rst: Synchronous active-high reset; clears the register to 4'b0000 on the next rising edge of clk.
+- d [3:0]: 4-bit data input to be captured.
 
 Output ports:
-  q: 4-bit output signal representing the current stored value in the register.
+- q [3:0]: 4-bit output representing the current stored value.
 
-Implementation:
-The 4-bit register operates on the principle of edge-triggered data storage. On every rising edge of the clock (clk),
-the register captures the 4-bit value present on the input d and updates the output q accordingly.
-If the reset (rst) signal is asserted (logic high), the register is immediately cleared to 4'b0000 on the next rising edge of the clock.
+Internal logic:
+1. Edge-triggered storage: On each rising edge of clk, if rst is 1, q loads 4'b0000; otherwise, q loads d.
+2. Pure sequential behavior: No combinational paths from d to q outside the clocked process (no latches, no async reset).
 
-This design ensures reliable and predictable multi-bit data handling in synchronous digital systems and is commonly used for register files, counters, and state storage in finite state machines.                                                                      
+Reset Behavior:
+Synchronous active-high reset. At power-up, q may be undefined; system logic must assert rst to initialize q to 4'b0000.
 
-Give me the complete code.
+Generate correct synthesizable RTL Verilog code

@@ -1,8 +1,7 @@
 module decoder_3x8 (
-    input  wire [2:0] in,     // 3-bit binary input
-    output reg  [7:0] out     // 8-bit one-hot output
+    input  wire [2:0] in,
+    output reg  [7:0] out
 );
-
     always @(*) begin
         case (in)
             3'b000: out = 8'b00000001;
@@ -13,8 +12,7 @@ module decoder_3x8 (
             3'b101: out = 8'b00100000;
             3'b110: out = 8'b01000000;
             3'b111: out = 8'b10000000;
-            default: out = 8'bxxxxxxxx; // Defensive coding (though all 3-bit values are valid)
+            default: out = 8'bxxxxxxxx; // invalid input
         endcase
     end
-
 endmodule

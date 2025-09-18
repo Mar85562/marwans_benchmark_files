@@ -1,0 +1,21 @@
+Please act as a professional Verilog designer.
+
+Implement a module that multiplies two 16-bit signed (two’s-complement) inputs and produces a 32-bit signed (two’s-complement) product. The design is purely combinational.
+
+Module name:
+mult_signed_16bit
+
+Input ports:
+- a [15:0]: 16-bit signed operand A (two’s-complement).
+- b [15:0]: 16-bit signed operand B (two’s-complement).
+
+Output ports:
+- product [31:0]: 32-bit signed product of A and B (two’s-complement).
+
+Internal logic:
+1. Signed interpretation: Treat a and b as signed two’s-complement values.
+2. Multiplication: Compute product as the signed multiplication of a and b in combinational logic.
+3. Width/precision: The 32-bit output width is sufficient to represent the exact product of any two 16-bit signed inputs; no saturation or rounding is performed.
+4. Combinational behavior: No clock or reset; the output updates immediately with changes on a or b.
+
+Generate correct synthesizable RTL Verilog code

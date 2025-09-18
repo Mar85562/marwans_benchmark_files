@@ -1,21 +1,19 @@
 Please act as a professional Verilog designer.
 
-Implement a combinational logic module that performs the function of a 4-to-16 decoder. 
-The decoder accepts a 4-bit binary input and outputs 16 lines, where exactly one output line is asserted high (1) corresponding to the binary input value.
+Implement a combinational logic module that performs the function of a 4-to-16 decoder. The decoder accepts a 4-bit binary input and outputs 16 lines, where exactly one output line is asserted high (1) corresponding to the binary input value.
 
 Module name:
-    decoder_4x16
+decoder_4x16
 
 Input ports:
-    in[3:0]: 4-bit input vector representing the binary value.
+- in [3:0]: 4-bit input vector representing the binary value.
 
 Output ports:
-    out[15:0]: 16-bit output vector where only one bit is high at a time, indicating the decoded output line.
+- out [15:0]: 16-bit one-hot output vector where only one bit is high at a time, indicating the decoded output line.
 
-Implementation:
-This decoder maps the 4-bit binary input in[3:0] to one-hot encoded output out[15:0]. The value of the 4-bit input
-corresponds to the index where the output signal will have that high bit.
+Internal logic:
+1. One-Hot Decode: Map in to out such that out[i] = 1 only when in equals the 4-bit binary of i (i ∈ 0..15).
+2. Combinational Operation: The module is purely combinational; outputs update immediately with input changes.
+3. Undefined Input Handling: If in contains X or Z, drive out to 16'bxxxxxxxxxxxxxxxx to reflect an invalid decode in simulation.
 
-The output reflects the binary input by activating exactly one output line. For any invalid input, the decoder will output: 16'bxxxxxxxxxxxxxxxx.
-
-Please give me the complete code.
+Generate correct synthesizable RTL Verilog code
