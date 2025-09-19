@@ -2,7 +2,7 @@
 
 # File names
 SRC = regfile.v # Change this to your design file.
-TB  = testbench.sv
+TB  = testbench.v
 OUT = test_result.txt
 BIN = sim.out
 SYNTH_OUT = synthesized.v

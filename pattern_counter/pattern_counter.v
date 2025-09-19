@@ -1,4 +1,3 @@
-```verilog
 module pattern_counter (
     input wire clk,
     input wire rst,
@@ -37,4 +36,3 @@ module pattern_counter (
     end
 
 endmodule
-```

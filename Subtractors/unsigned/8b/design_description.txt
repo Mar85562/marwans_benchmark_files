@@ -1,26 +1,21 @@
 Please act as a professional Verilog designer.
 
-Implement a module of an 8-bit unsigned subtractor with borrow-out detection for small-scale arithmetic or embedded systems applications.
+Implement a module that subtracts two 8-bit unsigned inputs and produces an 8-bit unsigned result with a borrow-out flag. The design is purely combinational.
 
-Module name:  
-    sub_8bit_unsigned
+Module name:
+sub_8bit_unsigned
 
-Input Ports:  
-    A [7:0]: First 8-bit input operand (unsigned). Represents the minuend.  
-    B [7:0]: Second 8-bit input operand (unsigned). Represents the subtrahend to be subtracted from A.
+Input ports:
+- a [7:0]: First 8-bit unsigned input (the number to subtract from).
+- b [7:0]: Second 8-bit unsigned input (the number to subtract).
 
-Output Ports:  
-    result [7:0]: 8-bit output representing the result of the subtraction (A - B).  
-    borrow: 1-bit output flag that indicates whether a borrow occurred during the subtraction.
+Output ports:
+- result [7:0]: 8-bit unsigned difference a − b.
+- borrow: 1-bit flag indicating an unsigned borrow (underflow).
 
-Implementation:  
-Subtraction Logic:  
-    The module performs unsigned subtraction: A - B.  
-    In standard unsigned binary arithmetic, if A < B, the result wraps around due to underflow, and a borrow occurs.
+Internal logic:
+1. Unsigned subtraction: Compute result as a − b in combinational logic.
+2. Borrow detection: Set borrow = 1 when a < b; otherwise borrow = 0.
+3. Combinational behavior: No clock or reset; outputs update immediately. Result uses natural modulo-2^8 wrap-around on underflow.
 
-Borrow Detection:  
-    Borrow-out is detected by comparing operands A and B:  
-    - If A < B, the subtraction would cause an underflow, so borrow = 1.  
-    - If A >= B, the subtraction completes without borrow, so borrow = 0.
-
-This design should be synthesizable and suitable for integration in systems requiring reliable unsigned arithmetic with explicit borrow tracking.
+Generate correct synthesizable RTL Verilog code

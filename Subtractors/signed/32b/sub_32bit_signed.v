@@ -1,19 +1,13 @@
 module sub_32bit_signed (
-    input  signed [31:0] A,         // First 32-bit signed operand
-    input  signed [31:0] B,         // Second 32-bit signed operand
-    output signed [31:0] result,    // Result of A - B
-    output overflow                 // Overflow flag
+    input  signed [31:0] A,
+    input  signed [31:0] B,
+    output signed [31:0] result,
+    output               overflow
 );
+    wire signed [31:0] B_neg = -B;
+    wire signed [31:0] diff  = A + B_neg;
 
-    wire signed [31:0] B_neg;       // Two's complement of B
-    wire signed [31:0] diff;        // Intermediate result
-
-    assign B_neg  = -B;             // Negate B to perform A - B
-    assign diff   = A + B_neg;      // Subtraction via addition
-    assign result = diff;
-
-    // Overflow occurs when A and -B have the same sign,
-    // but result has a different sign from A
+    assign result   = diff;
+    // overflow if A and -B share sign and result flips relative to A
     assign overflow = (A[31] == B_neg[31]) && (result[31] != A[31]);
-
 endmodule

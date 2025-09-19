@@ -2,7 +2,7 @@
 
 # File names
 SRC = sub_16bit_unsigned.v
-TB  = testbench.sv
+TB  = testbench.v
 OUT = test_result.txt
 BIN = sim.out
 SYNTH_OUT = synthesized.v

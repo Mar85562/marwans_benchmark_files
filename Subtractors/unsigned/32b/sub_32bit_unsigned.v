@@ -1,14 +1,9 @@
 module sub_32bit_unsigned (
-    input  wire [31:0] A,       // Unsigned 32-bit minuend
-    input  wire [31:0] B,       // Unsigned 32-bit subtrahend
-    output wire [31:0] result,  // Subtraction result: A - B
-    output wire        borrow   // Borrow-out flag: 1 if A < B
+    input  wire [31:0] A,       // first input (subtract from)
+    input  wire [31:0] B,       // number to subtract
+    output wire [31:0] result,  // A - B (mod 2^32)
+    output wire        borrow   // 1 when A < B
 );
-
-    // Subtraction operation
     assign result = A - B;
-
-    // Borrow detection logic
-    assign borrow = (A < B) ? 1'b1 : 1'b0;
-
+    assign borrow = (A < B);
 endmodule
