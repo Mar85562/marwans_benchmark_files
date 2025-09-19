@@ -1,0 +1,23 @@
+Please act as a professional Verilog designer.
+
+Implement a 4-bit register that stores and updates a 4-bit value using a rising-edge clock and a synchronous active-high reset.
+
+Module name:
+register_4bit
+
+Input ports:
+- clk: Clock signal used to synchronize data storage (rising-edge triggered).
+- rst: Synchronous active-high reset; clears the register to 4'b0000 on the next rising edge of clk.
+- d [3:0]: 4-bit data input to be captured.
+
+Output ports:
+- q [3:0]: 4-bit output representing the current stored value.
+
+Internal logic:
+1. Edge-triggered storage: On each rising edge of clk, if rst is 1, q loads 4'b0000; otherwise, q loads d.
+2. Pure sequential behavior: No combinational paths from d to q outside the clocked process (no latches, no async reset).
+
+Reset Behavior:
+Synchronous active-high reset. At power-up, q may be undefined; system logic must assert rst to initialize q to 4'b0000.
+
+Generate correct synthesizable RTL Verilog code
