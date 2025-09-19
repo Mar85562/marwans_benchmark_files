@@ -1,0 +1,21 @@
+Please act as a professional Verilog designer.
+
+Implement a combinational logic module that performs the function of a 2-to-4 decoder. The decoder accepts a 2-bit binary input and outputs 4 lines, where exactly one output line is asserted high (1) corresponding to the binary input value.
+
+Module name:
+decoder_2x4
+
+Input ports:
+- in [1:0]: 2-bit input vector representing the binary value.
+
+Output ports:
+- out [3:0]: 4-bit one-hot output vector where only one bit is high at a time, indicating the decoded output line.
+
+Internal logic:
+1. One-Hot Decode: The 2-bit input is mapped to a one-hot 4-bit output such that out[0] corresponds to input 2'b00, out[1] to 2'b01, out[2] to 2'b10, and out[3] to 2'b11.
+
+2. Combinational Operation: The module is purely combinational; outputs update immediately with changes on the input.
+
+3. Undefined Input Handling: If the input contains unknown (X) or high-impedance (Z) values, drive the output to 4'bxxxx to reflect an invalid decode in simulation.
+
+Generate correct synthesizable RTL Verilog code
