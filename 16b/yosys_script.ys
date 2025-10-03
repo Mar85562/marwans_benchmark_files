@@ -1,0 +1,3 @@
+read_verilog sub_16bit_signed.v
+synth -top sub_16bit_signed
+write_verilog synthesized.v

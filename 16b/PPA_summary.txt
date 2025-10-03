@@ -1,0 +1,32 @@
+OpenLane run: /home/marwan/OpenLane/designs/sub_16bit_signed/runs/RUN_2025.10.03_18.35.14
+
+[AREA]
+/home/marwan/OpenLane/designs/sub_16bit_signed/runs/RUN_2025.10.03_18.35.14/reports/synthesis/1-synthesis.AREA_0.stat.rpt:   Number of cells:                128
+/home/marwan/OpenLane/designs/sub_16bit_signed/runs/RUN_2025.10.03_18.35.14/reports/synthesis/1-synthesis.AREA_0.stat.rpt:   Chip area for module '\sub_16bit_signed': 1168.620800
+
+[TIMING]
+report_tns
+tns 0.00
+report_wns
+wns 0.00
+report_worst_slack -max (Setup)
+worst slack 1.73
+report_worst_slack -min (Hold)
+worst slack 4.20
+
+[POWER]
+Group                  Internal  Switching    Leakage      Total
+Total                  3.87e-05   5.79e-05   8.63e-10   9.66e-05 100.0%
+
+[SKEW]
+
+===========================================================================
+report_clock_skew
+============================================================================
+Clock clk
+No launch/capture paths found.
+
+
+[metrics.csv]
+design,design_name,config,flow_status,total_runtime,routed_runtime,(Cell/mm^2)/Core_Util,DIEAREA_mm^2,CellPer_mm^2,OpenDP_Util,Final_Util,Peak_Memory_Usage_MB,synth_cell_count,tritonRoute_violations,Short_violations,MetSpc_violations,OffGrid_violations,MinHole_violations,Other_violations,Magic_violations,pin_antenna_violations,net_antenna_violations,lvs_total_errors,cvc_total_errors,klayout_violations,wire_length,vias,wns,pl_wns,optimized_wns,fastroute_wns,spef_wns,tns,pl_tns,optimized_tns,fastroute_tns,spef_tns,HPWL,routing_layer1_pct,routing_layer2_pct,routing_layer3_pct,routing_layer4_pct,routing_layer5_pct,routing_layer6_pct,wires_count,wire_bits,public_wires_count,public_wire_bits,memories_count,memory_bits,processes_count,cells_pre_abc,AND,DFF,NAND,NOR,OR,XOR,XNOR,MUX,inputs,outputs,level,DecapCells,WelltapCells,DiodeCells,FillCells,NonPhysCells,TotalCells,CoreArea_um^2,power_slowest_internal_uW,power_slowest_switching_uW,power_slowest_leakage_uW,power_typical_internal_uW,power_typical_switching_uW,power_typical_leakage_uW,power_fastest_internal_uW,power_fastest_switching_uW,power_fastest_leakage_uW,critical_path_ns,suggested_clock_period,suggested_clock_frequency,CLOCK_PERIOD,FP_ASPECT_RATIO,FP_CORE_UTIL,FP_PDN_HPITCH,FP_PDN_VPITCH,GRT_ADJUSTMENT,GRT_REPAIR_ANTENNAS,MAX_FANOUT_CONSTRAINT,PL_TARGET_DENSITY,RUN_HEURISTIC_DIODE_INSERTION,STD_CELL_LIBRARY,SYNTH_STRATEGY
+/openlane/designs/sub_16bit_signed,sub_16bit_signed,RUN_2025.10.03_18.35.14,flow completed,0h1m42s0ms,0h1m24s0ms,93197.86663117462,0.004163185424999999,46598.93331558731,56.44,-1,521.17,128,0,0,0,0,0,0,0,0,0,0,-1,-1,3427,1125,0.0,-1,-1,-1,0.0,0.0,-1,-1,-1,0.0,2853038.0,0.0,26.89,27.11,0.21,0.0,0.0,134,209,6,81,0,0,0,145,1,0,2,15,14,43,4,0,32,17,11,116,28,0,77,194,415,2233.392,-1,-1,-1,3.87e-05,5.79e-05,8.63e-10,-1,-1,-1,4.02,10.0,100.0,10.0,1,50,11.555,12.075,0.3,1,10,0.6,0,sky130_fd_sc_hd,AREA 0
